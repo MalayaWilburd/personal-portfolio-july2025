@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Professional Software Engineer Theme */
+
+@layer base {
+  :root {
+    /* Base colors - Elegant monochrome */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+
+    /* Card and surface colors */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --surface: 0 0% 98%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    /* Primary brand colors - Sophisticated black */
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 0% 20%;
+
+    /* Secondary colors - Elegant grays */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+
+    /* Neutral colors */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent colors */
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+
+    /* UI elements */
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 9%;
+
+    /* Design system properties */
+    --radius: 0.75rem;
+
+    /* Sophisticated gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 9%), hsl(0 0% 20%));
+    --gradient-secondary: linear-gradient(135deg, hsl(0 0% 96%), hsl(0 0% 100%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 9% / 0.03), hsl(0 0% 20% / 0.08));
+    --gradient-dark: linear-gradient(135deg, hsl(0 0% 3%), hsl(0 0% 12%));
+
+    /* Elegant shadows */
+    --shadow-soft: 0 2px 8px hsl(0 0% 0% / 0.04);
+    --shadow-medium: 0 8px 30px hsl(0 0% 0% / 0.08);
+    --shadow-large: 0 20px 40px hsl(0 0% 0% / 0.12);
+    
+    /* Glowing shadows for dark theme */
+    --shadow-glow: 0 0 20px hsl(0 0% 100% / 0.1);
+    --shadow-glow-strong: 0 0 40px hsl(0 0% 100% / 0.15);
+    --shadow-primary-glow: 0 0 30px hsl(var(--primary) / 0.3);
+
+    /* Smooth transitions */
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+    --surface: 0 0% 5%;
+    --surface-alt: 0 0% 7%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --card-alt: 0 0% 6%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --primary-glow: 0 0% 80%;
+
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 63%;
+
+    --accent: 0 0% 9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 83%;
+    
+    /* Enhanced dark theme shadows with glow */
+    --shadow-soft: 0 2px 8px hsl(0 0% 0% / 0.3), 0 0 20px hsl(0 0% 100% / 0.05);
+    --shadow-medium: 0 8px 30px hsl(0 0% 0% / 0.4), 0 0 40px hsl(0 0% 100% / 0.08);
+    --shadow-large: 0 20px 40px hsl(0 0% 0% / 0.5), 0 0 60px hsl(0 0% 100% / 0.12);
+    
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 9%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 0 0% 83%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Professional gradient utilities */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  /* Shadow utilities */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-large {
+    box-shadow: var(--shadow-large);
+  }
+
+  /* Glowing shadow utilities for dark theme */
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-glow-strong {
+    box-shadow: var(--shadow-glow-strong);
+  }
+
+  .shadow-primary-glow {
+    box-shadow: var(--shadow-primary-glow);
+  }
+
+  /* Animation utilities */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+
+  .transition-slow {
+    transition: var(--transition-slow);
+  }
+
+  /* Hero button variant with glow */
+  .btn-hero {
+    @apply bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold shadow-medium hover:shadow-large transition-smooth hover:scale-105;
+  }
+
+  /* Enhanced project card with glowing hover effects */
+  .project-card {
+    @apply bg-card border border-border rounded-xl p-6 shadow-soft hover:shadow-large transition-smooth hover:scale-[1.02];
+  }
+  
+  .dark .project-card {
+    @apply hover:shadow-glow;
+  }
+
+  /* Enhanced skill badge styling */
+  .skill-badge {
+    @apply bg-secondary text-secondary-foreground px-4 py-2 rounded-full text-sm font-medium shadow-soft hover:shadow-medium transition-smooth;
+  }
+  
+  .dark .skill-badge {
+    @apply hover:shadow-glow;
+  }
+
+  /* Scroll fade-in animation */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .fade-in-up.delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .fade-in-up.delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .fade-in-up.delay-3 {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
