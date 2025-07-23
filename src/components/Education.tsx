@@ -11,16 +11,29 @@ const Education = () => {
       duration: "August 2022 - May 2026",
       gpa: "3.97/4.0",
       description: "",
-      courses: ["Data Structures & Algorithms", "Artificial Intelligence", "Software Engineering", "Advanced Operating Systems", "Web Development"]
+      courses: ["Algorithm Design & Analysis", "Data Structures", "Artificial Intelligence", 
+      "Software Engineering", "Advanced Operating Systems", "Web Development", 
+      "Database Design & Implementation", "Programming in Python", "Calculus I & II", "Linear Algebra",
+      "Applied Statistics"]
     },
     {
       type: "degree",
       institution: "Arkansas Tech University",
-      degree: "Associate of Applied Science in Information Technology",
+      degree: "Associate of Applied Science Information Technology",
       duration: "August 2022 - December 2024",
       gpa: "4.0/4.0",
       description: "",
-      courses: [""]
+      courses: ["Networking", "Programming I & II", "Computer Hardware & Architecture", "Cybersecurity", 
+      "Computer Organization/Programming"]
+    },
+    {
+      type: "degree",
+      institution: "Arkansas Tech University",
+      degree: "Associate of Arts General Education",
+      duration: "August 2022 - May 2025",
+      gpa: "3.97/4.0",
+      description: "",
+      courses: ["Finance", "Mathematics", "Government", "Composition I & II", "Science"]
     }
   ];
 
@@ -49,7 +62,7 @@ const Education = () => {
     {
       name: "Certificate of Proficiency in Computer Programming",
       issuer: "Arkansas Tech University",
-      date: "December 2024",
+      date: "May 2024",
       status: "Active",
       description: ""
     }
