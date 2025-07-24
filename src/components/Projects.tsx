@@ -24,7 +24,7 @@ const Projects = () => {
     {
       title: "Rental Property Management System",
       description: "",
-      image: "/rental-property",
+      image: "/rental-database.jpeg",
       technologies: ["SQL"],
       githubURL: "https://github.com/MalayaWilburd/Real-Estate-Management-System",
       liveUrl: "#",

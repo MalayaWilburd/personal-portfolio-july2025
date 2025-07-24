@@ -90,7 +90,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         className="w-full"
-                        placeholder="First Name"
+                        placeholder="Full Name"
                       />
                     </div>
                     <div>
