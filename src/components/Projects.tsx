@@ -22,20 +22,29 @@ const Projects = () => {
       featured: true
     },
     {
-      title: "RapidRoute: AI for Accelerated Mental Health Triage in Veteran Care",
+      title: "Rental Property Management System",
       description: "",
-      image: "/rapidroute.png",
-      technologies: [""],
+      image: "/rental-property",
+      technologies: ["SQL"],
+      githubURL: "https://github.com/MalayaWilburd/Real-Estate-Management-System",
+      liveUrl: "#",
+      featured: false
+    },
+    {
+      title: "NIST JARVIS Research Project",
+      description: "",
+      image: "/jarvis.png",
+      technologies: ["Pandas"],
       githubUrl: "#",
       liveUrl: "#",
       featured: false
     },
     {
-      title: "Personal Portfolio Website",
+      title: "Personal Portfolio Website (June 2025)",
       description: "",
       image: "/personalportfolio.png",
       technologies: ["Next.js", "React.js", "Tailwind CSS", "JavaScript", "Framer Motion", "Email API"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/MalayaWilburd/Personal-Portfolio-Website",
       liveUrl: "#",
       featured: false
     },
@@ -53,15 +62,6 @@ const Projects = () => {
       description: "",
       image: "/flappybird.png",
       technologies: ["C#", "Unity"],
-      githubUrl: "#",
-      liveUrl: "#",
-      featured: false
-    },
-    {
-      title: "NIST JARVIS Research Project",
-      description: "",
-      image: "/jarvis.png",
-      technologies: ["Pandas"],
       githubUrl: "#",
       liveUrl: "#",
       featured: false
