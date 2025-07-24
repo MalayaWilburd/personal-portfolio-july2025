@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 import { useState } from "react";
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -77,13 +78,10 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Import emailjs dynamically - In your actual project, install: npm install emailjs-com
-      // const emailjs = await import('emailjs-com');
-      
-      // Replace these with your actual EmailJS credentials
-      const SERVICE_ID = 'your_service_id';
-      const TEMPLATE_ID = 'your_template_id';
-      const USER_ID = 'your_user_id'; // Also called Public Key
+      // Use your actual EmailJS credentials from .env
+      const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_b0z3ow1';
+      const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID; // Make sure this is your actual template ID
+      const USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || 'nnP_m_vhrzev9Vdh2';
       
       const templateParams = {
         from_name: formData.name,
@@ -93,19 +91,14 @@ const Contact = () => {
         to_name: 'Malaya', // Your name
       };
 
-      // Simulate email sending for demo (replace with actual emailjs.send call)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      /* Replace the above line with this in your actual project:
       const result = await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
         templateParams,
         USER_ID
       );
-      */
 
-      console.log('Email sent successfully');
+      console.log('Email sent successfully:', result);
       setSubmitStatus('success');
       
       // Reset form
@@ -205,7 +198,7 @@ const Contact = () => {
                   </div>
                 )}
                 
-                <div className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -287,13 +280,13 @@ const Contact = () => {
                   </div>
                   
                   <Button 
-                    onClick={handleSubmit}
+                    type="submit"
                     className="w-full btn-hero"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
-                </div>
+                </form>
               </div>
             </div>
 
