@@ -83,13 +83,22 @@ const Contact = () => {
       const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID; // Make sure this is your actual template ID
       const USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || 'nnP_m_vhrzev9Vdh2';
       
+      // Debug logging
+      console.log('EmailJS Config:', { SERVICE_ID, TEMPLATE_ID, USER_ID });
+      
+      if (!TEMPLATE_ID) {
+        throw new Error('TEMPLATE_ID is missing. Please check your .env file.');
+      }
+      
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
+        reply_to: formData.email,
         subject: formData.subject,
         message: formData.message,
-        to_name: 'Malaya', // Your name
       };
+
+      console.log('Template Params:', templateParams);
 
       const result = await emailjs.send(
         SERVICE_ID,
