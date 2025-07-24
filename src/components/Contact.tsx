@@ -194,14 +194,14 @@ const Contact = () => {
       icon: MapPin,
       label: "Location",
       value: "Little Rock, AR",
-      href: "#"
+      href: "https://maps.app.goo.gl/VSnrHE41SbuRjZot8"
     }
   ];
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/MalayaWilburd", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/malaya-wilburd-751aa82ba", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Twitter, href: "https://x.com/malayatech?s=11", label: "Twitter" },
   ];
 
   return (
