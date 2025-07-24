@@ -3,7 +3,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 import { useState } from "react";
-import emailjs from 'emailjs-com';
+
+// Declare EmailJS types for window object
+declare global {
+  interface Window {
+    emailjs: {
+      init: (publicKey: string) => void;
+      send: (serviceId: string, templateId: string, templateParams: any) => Promise<any>;
+    };
+  }
+}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,44 +23,47 @@ const Contact = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
-  const [fieldErrors, setFieldErrors] = useState<{
-    name?: string;
-    email?: string;
-    subject?: string;
-    message?: string;
-  }>({});
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({
+    name: "",
+    email: "", 
+    subject: "",
+    message: ""
+  });
+
+  // EmailJS configuration with your actual credentials
+  const EMAILJS_CONFIG = {
+    serviceId: 'service_b0z3ow1',
+    templateId: 'template_6w4xops', 
+    publicKey: 'nnP_m_vhrzev9Vdh2'
+  };
 
   const validateForm = () => {
-    const errors: {
-      name?: string;
-      email?: string;
-      subject?: string;
-      message?: string;
-    } = {};
+    const errors = {
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    };
     
-    // Name validation
     if (!formData.name.trim()) {
       errors.name = "Name is required";
     } else if (formData.name.trim().length < 2) {
       errors.name = "Name must be at least 2 characters";
     }
     
-    // Email validation
     if (!formData.email.trim()) {
       errors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errors.email = "Please enter a valid email address";
     }
     
-    // Subject validation
     if (!formData.subject.trim()) {
       errors.subject = "Subject is required";
     } else if (formData.subject.trim().length < 3) {
       errors.subject = "Subject must be at least 3 characters";
     }
     
-    // Message validation
     if (!formData.message.trim()) {
       errors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
@@ -64,31 +76,55 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Clear previous errors
-    setFieldErrors({});
+    console.log('Form submitted'); // Debug log
+    
+    setFieldErrors({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
     setSubmitStatus(null);
     
-    // Validate form
     const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
+    if (Object.keys(errors).filter(key => errors[key]).length > 0) {
+      console.log('Validation errors:', errors);
       setFieldErrors(errors);
       return;
     }
     
+    console.log('Validation passed, starting email send...');
     setIsSubmitting(true);
 
     try {
-      // Use your actual EmailJS credentials from .env
-      const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_b0z3ow1';
-      const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID; // Make sure this is your actual template ID
-      const USER_ID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID || 'nnP_m_vhrzev9Vdh2';
-      
-      // Debug logging
-      console.log('EmailJS Config:', { SERVICE_ID, TEMPLATE_ID, USER_ID });
-      
-      if (!TEMPLATE_ID) {
-        throw new Error('TEMPLATE_ID is missing. Please check your .env file.');
+      // Load EmailJS script dynamically if not already loaded
+      if (!window.emailjs) {
+        console.log('Loading EmailJS script...');
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+          script.onload = () => {
+            console.log('EmailJS script loaded successfully');
+            resolve(true);
+          };
+          script.onerror = (error) => {
+            console.error('Failed to load EmailJS script:', error);
+            reject(error);
+          };
+          document.head.appendChild(script);
+        });
+        
+        // Wait a bit for the script to initialize
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
+      
+      if (!window.emailjs) {
+        throw new Error('EmailJS failed to load');
+      }
+      
+      console.log('Initializing EmailJS...');
+      // Initialize EmailJS with your public key
+      window.emailjs.init('nnP_m_vhrzev9Vdh2');
       
       const templateParams = {
         from_name: formData.name,
@@ -98,13 +134,12 @@ const Contact = () => {
         message: formData.message,
       };
 
-      console.log('Template Params:', templateParams);
+      console.log('Sending email with params:', templateParams);
 
-      const result = await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        templateParams,
-        USER_ID
+      const result = await window.emailjs.send(
+        'service_b0z3ow1',
+        'template_6w4xops', 
+        templateParams
       );
 
       console.log('Email sent successfully:', result);
@@ -134,7 +169,6 @@ const Contact = () => {
       [name]: value
     }));
     
-    // Clear field error when user starts typing
     if (fieldErrors[name]) {
       setFieldErrors(prev => ({
         ...prev,
@@ -152,7 +186,7 @@ const Contact = () => {
     },
     {
       icon: Phone,
-      label: "Phone",
+      label: "Phone", 
       value: "+1 (501) 283-1498",
       href: "tel:+15012831498"
     },
@@ -174,7 +208,6 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-surface border-t border-border/50">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 fade-in-up">
               Get In <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">Touch</span>
@@ -187,14 +220,12 @@ const Contact = () => {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
-            <div className="fade-in-up">
+            <div>
               <div className="bg-card rounded-2xl p-8 shadow-medium hover:shadow-glow transition-smooth border border-border">
                 <h3 className="text-2xl font-semibold mb-6 text-foreground">
                   Send me a message
                 </h3>
                 
-                {/* Status Messages */}
                 {submitStatus === 'success' && (
                   <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                     <p className="text-green-800 font-medium">Message sent successfully! I'll get back to you soon.</p>
@@ -207,7 +238,7 @@ const Contact = () => {
                   </div>
                 )}
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -289,17 +320,16 @@ const Contact = () => {
                   </div>
                   
                   <Button 
-                    type="submit"
+                    onClick={handleSubmit}
                     className="w-full btn-hero"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
-                </form>
+                </div>
               </div>
             </div>
 
-            {/* Contact Information */}
             <div className="fade-in-up delay-1">
               <div className="space-y-8">
                 <div>
@@ -314,7 +344,6 @@ const Contact = () => {
                   </p>
                 </div>
 
-                {/* Contact Details */}
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <a
@@ -335,7 +364,6 @@ const Contact = () => {
                   ))}
                 </div>
 
-                {/* Social Links */}
                 <div>
                   <h4 className="font-semibold text-foreground mb-4">Follow me</h4>
                   <div className="flex space-x-4">
@@ -352,7 +380,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Availability */}
                 <div className="p-6 bg-gradient-to-r from-primary/5 to-primary-glow/5 rounded-xl border border-primary/20 shadow-soft hover:shadow-glow transition-smooth">
                   <h4 className="font-semibold text-foreground mb-2">Availability</h4>
                   <p className="text-muted-foreground mb-3">
