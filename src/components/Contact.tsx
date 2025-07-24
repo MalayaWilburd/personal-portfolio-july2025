@@ -11,18 +11,134 @@ const Contact = () => {
     subject: "",
     message: ""
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+  const [fieldErrors, setFieldErrors] = useState<{
+    name?: string;
+    email?: string;
+    subject?: string;
+    message?: string;
+  }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+  const validateForm = () => {
+    const errors: {
+      name?: string;
+      email?: string;
+      subject?: string;
+      message?: string;
+    } = {};
+    
+    // Name validation
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      errors.name = "Name must be at least 2 characters";
+    }
+    
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    
+    // Subject validation
+    if (!formData.subject.trim()) {
+      errors.subject = "Subject is required";
+    } else if (formData.subject.trim().length < 3) {
+      errors.subject = "Subject must be at least 3 characters";
+    }
+    
+    // Message validation
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      errors.message = "Message must be at least 10 characters";
+    }
+    
+    return errors;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Clear previous errors
+    setFieldErrors({});
+    setSubmitStatus(null);
+    
+    // Validate form
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      return;
+    }
+    
+    setIsSubmitting(true);
+
+    try {
+      // Import emailjs dynamically - In your actual project, install: npm install emailjs-com
+      // const emailjs = await import('emailjs-com');
+      
+      // Replace these with your actual EmailJS credentials
+      const SERVICE_ID = 'your_service_id';
+      const TEMPLATE_ID = 'your_template_id';
+      const USER_ID = 'your_user_id'; // Also called Public Key
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: 'Malaya', // Your name
+      };
+
+      // Simulate email sending for demo (replace with actual emailjs.send call)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      /* Replace the above line with this in your actual project:
+      const result = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        USER_ID
+      );
+      */
+
+      console.log('Email sent successfully');
+      setSubmitStatus('success');
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+      
+    } catch (error) {
+      console.error('Email send failed:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({
+        ...prev,
+        [name]: ""
+      }));
+    }
   };
 
   const contactInfo = [
@@ -76,7 +192,20 @@ const Contact = () => {
                   Send me a message
                 </h3>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 font-medium">Message sent successfully! I'll get back to you soon.</p>
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 font-medium">Failed to send message. Please try again or contact me directly.</p>
+                  </div>
+                )}
+                
+                <div className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -89,9 +218,13 @@ const Contact = () => {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full"
+                        className={`w-full ${fieldErrors.name ? 'border-red-500 focus:border-red-500' : ''}`}
                         placeholder="Full Name"
+                        disabled={isSubmitting}
                       />
+                      {fieldErrors.name && (
+                        <p className="text-red-500 text-sm mt-1">{fieldErrors.name}</p>
+                      )}
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
@@ -104,9 +237,13 @@ const Contact = () => {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full"
+                        className={`w-full ${fieldErrors.email ? 'border-red-500 focus:border-red-500' : ''}`}
                         placeholder="emailaddress@example.com"
+                        disabled={isSubmitting}
                       />
+                      {fieldErrors.email && (
+                        <p className="text-red-500 text-sm mt-1">{fieldErrors.email}</p>
+                      )}
                     </div>
                   </div>
                   
@@ -121,9 +258,13 @@ const Contact = () => {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full"
+                      className={`w-full ${fieldErrors.subject ? 'border-red-500 focus:border-red-500' : ''}`}
                       placeholder="Opportunity Inquiry"
+                      disabled={isSubmitting}
                     />
+                    {fieldErrors.subject && (
+                      <p className="text-red-500 text-sm mt-1">{fieldErrors.subject}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -136,15 +277,23 @@ const Contact = () => {
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full min-h-[120px]"
+                      className={`w-full min-h-[120px] ${fieldErrors.message ? 'border-red-500 focus:border-red-500' : ''}`}
                       placeholder="Good morning, I would like to discuss..."
+                      disabled={isSubmitting}
                     />
+                    {fieldErrors.message && (
+                      <p className="text-red-500 text-sm mt-1">{fieldErrors.message}</p>
+                    )}
                   </div>
                   
-                  <Button type="submit" className="w-full btn-hero">
-                    Send Message
+                  <Button 
+                    onClick={handleSubmit}
+                    className="w-full btn-hero"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
-                </form>
+                </div>
               </div>
             </div>
 
