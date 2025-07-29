@@ -16,9 +16,9 @@ const Projects = () => {
       title: "S&P 500 Companies: Sector, Location, and Diversity Analysis",
       description: "",
       image: "/data-analysis.webp",
-      technologies: ["Python", "Pandas"],
-      githubUrl: "#",
-      liveUrl: "#",
+      technologies: ["Python", "Pandas", "Streamlit", "Matplotlib", "Seaborn", "Numpy"],
+      githubUrl: "https://github.com/MalayaWilburd/sp500-companies-sector-location-diversity-analysis",
+      liveUrl: "https://malayawilburd-sp500-companies-sector--sp500-analysis-app-yej2ih.streamlit.app/",
       featured: true
     },
     {
