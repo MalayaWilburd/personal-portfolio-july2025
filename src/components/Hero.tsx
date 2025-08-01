@@ -79,7 +79,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
-          alt="Professional workspace" 
+          alt="Moon in space" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-background/90 backdrop-blur-sm"></div>
