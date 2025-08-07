@@ -60,7 +60,7 @@ const Education = () => {
       description: ""
     },
     {
-      name: "Mathematics, Certificated of Proficiency",
+      name: "Mathematics, Certificate of Proficiency",
       issuer: "Arkansas Tech University",
       date: "May 2025",
       status: "Active",
