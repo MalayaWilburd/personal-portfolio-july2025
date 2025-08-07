@@ -39,6 +39,13 @@ const Education = () => {
 
   const certifications = [
     {
+      name: "Data Analytics Job Simulation, Certificate of Completion | Deloitte.",
+      issuer: "Forage",
+      date: "August 2025",
+      status: "Active",
+      description: ""
+    },
+    {
       name: "Crash Course on Python",
       issuer: "Google",
       date: "July 2025",
@@ -46,21 +53,21 @@ const Education = () => {
       description: ""
     },
     {
-      name: "Certificate of Competency Building LLM Applications with Prompt Engineering",
+      name: "Building LLM Applications with Prompt Engineering, Certificate of Competency ",
       issuer: "NVIDIA",
       date: "June 2025",
       status: "Active", 
       description: ""
     },
     {
-      name: "Certificated of Proficiency in Mathematics",
+      name: "Mathematics, Certificated of Proficiency",
       issuer: "Arkansas Tech University",
       date: "May 2025",
       status: "Active",
       description: ""
     },
     {
-      name: "Certificate of Proficiency in Computer Programming",
+      name: "Computer Programming, Certificate of Proficiency",
       issuer: "Arkansas Tech University",
       date: "May 2024",
       status: "Active",
