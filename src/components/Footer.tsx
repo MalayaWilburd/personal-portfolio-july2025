@@ -31,7 +31,7 @@ const Footer = () => {
                 </span>
               </div>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                Aspiring Software Engineer focused on AI/Machine Learning, driven by a passion for building 
+                Aspiring Data Analyst interested in AI/Machine Learning, driven by a passion for building 
                 data-driven, impactful solutions and seamless user experiences with clean, efficient code.
               </p>
               <div className="flex space-x-4">

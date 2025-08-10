@@ -89,9 +89,9 @@ const Skills = () => {
                 Always Learning
               </h3>
               <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
-                As an aspiring Software Engineer with a keen interest in AI and Machine Learning, 
+                As an aspiring Data Analyst with a keen interest in AI and Machine Learning, 
                 I'm driven by the field's rapid advancements and committed to continuous learning. 
-                I'm actively exploring new algorithms, models, and frameworks, applying them in personal AI/ML projects,
+                I'm actively exploring new algorithms, models, and frameworks, applying them in personal projects,
                 and constantly deepening my understanding of data science principles to build intelligent solutions
               </p>
               <div className="flex flex-wrap justify-center gap-4">
