@@ -116,15 +116,15 @@ const Hero = () => {
                     sequence={[
                       "Malaya Wilburd",
                       1000,
-                      "Future Software Engineer",
-                      1000,
-                      "Future Data Analyst",
+                      "Aspiring Data Analyst",
                       1000,
                       "Web Developer",
                       1000,
-                      "Student",
+                      "Passionate Learner",
                       1000,
                       "Problem Solver",
+                      1000,
+                      "Student",
                       1000
                     ]}
                     speed={100}
@@ -134,13 +134,14 @@ const Hero = () => {
               </h1>
               
               <h2 className="text-2xl md:text-3xl text-muted-foreground mb-8 fade-in-up delay-2">
-                Innovating with Modern Tech: Crafting Impactful Solutions
+                Innovating with Modern Tech: Crafting Data-Driven Solutions
               </h2>
               
               <p className="text-lg text-muted-foreground mb-12 leading-relaxed fade-in-up delay-3">
-                Passionate about building efficient, scalable, and intelligent applications. 
-                I'm driven by bringing ideas to life through code, with a strong focus on exceptional user experience and performance, 
-                leveraging AI and Machine Learning to transform complex concepts into impactful, real-world solutions.
+                Passionate about leveraging data to drive insights and build impactful solutions. 
+                I'm driven by the process of transforming complex data into clear, actionable intelligence, 
+                with a strong focus on exceptional analytical rigor and performance. By leveraging AI and Machine Learning techniques, 
+                I aim to uncover hidden patterns and create data-driven solutions that solve real-world problems.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12 fade-in-up delay-3">

@@ -22,7 +22,7 @@ const About = () => {
             {/* Content */}
             <div className="fade-in-up">
               <h3 className="text-2xl font-semibold mb-6 text-foreground">
-                Aspiring Software Engineer | AI/ML & Data Enthusiast
+                Aspiring Data Analyst | AI/ML & Data Enthusiast
               </h3>
               
               <div className="space-y-4 text-muted-foreground leading-relaxed">
