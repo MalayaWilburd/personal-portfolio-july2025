@@ -79,10 +79,10 @@ const About = () => {
               <div className="mt-8 p-6 bg-gradient-to-r from-primary/5 to-primary-glow/5 rounded-xl border border-primary/10">
                 <h4 className="font-semibold text-foreground mb-3">Currently</h4>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>✨ Developing impactful applications</p>
-                  <p>🌐 Mastering web & system architectures</p>
-                  <p>🤖 Innovating with AI/ML integration</p>
-                  <p>📈 Continuously learning cutting-edge technologies</p>
+                  <p>✨ Driving business impact with data analysis</p>
+                  <p>🌐 Creating dashboards and reports for key insights</p>
+                  <p>🤖 Building predictive models using machine learning</p>
+                  <p>📈 Mastering modern data tools and platforms</p>
                 </div>
               </div>
             </div>
