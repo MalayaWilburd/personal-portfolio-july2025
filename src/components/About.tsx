@@ -27,10 +27,10 @@ const About = () => {
               
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  As a Computer Science senior at Arkansas Tech University, I am a dedicated aspiring AI/Machine 
-                  Learning Developer and Software Engineer driven by the ambition to create data-driven, impactful solutions. 
-                  With a solid background in building scalable applications using modern technologies, 
-                  I'm committed to engineering efficient systems that leverage cutting-edge AI/ML principles.
+                  As a Computer Science senior at Arkansas Tech University, I'm an aspiring Data Analyst driven 
+                  by the ambition to create data-driven, impactful solutions. With a solid background in building 
+                  scalable applications and an understanding of modern technologies, I'm committed to engineering 
+                  efficient systems that translate complex data into clear, actionable insights.
                 </p>
                 
                 <p>
