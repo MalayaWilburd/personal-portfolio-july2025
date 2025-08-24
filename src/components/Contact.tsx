@@ -31,7 +31,7 @@ const Contact = () => {
     message: ""
   });
 
-  // EmailJS configuration with your actual credentials
+  // EmailJS configuration
   const EMAILJS_CONFIG = {
     serviceId: 'service_b0z3ow1',
     templateId: 'template_6w4xops', 
@@ -123,7 +123,7 @@ const Contact = () => {
       }
       
       console.log('Initializing EmailJS...');
-      // Initialize EmailJS with your public key
+      // Initialize EmailJS
       window.emailjs.init('nnP_m_vhrzev9Vdh2');
       
       const templateParams = {

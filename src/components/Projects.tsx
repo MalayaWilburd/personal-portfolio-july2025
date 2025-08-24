@@ -4,13 +4,22 @@ import { ExternalLink, Github, Star } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
+      title: "Natural Gas Forecasting",
+      description: "",
+      image: "/natural-gas-forecasting.jpg",
+      technologies: ["Python", "Pandas", "Numpy", "Scikit-Learn", "Matplotlib", "SciPy"],
+      githubUrl: "https://github.com/MalayaWilburd/natural-gas-forecasting",
+      liveUrl: "#",
+      featured: true
+    },
+    {
       title: "AI Voice Assistant",
       description: "",
       image: "/ai-voice-assistant.png",
       technologies: ["Python", "LiveKit", "Google LLMs", "Tool Use"],
       githubUrl: "https://github.com/MalayaWilburd/nexa-voice-ai-assistant",
       liveUrl: "#",
-      featured: true
+      featured: false
     },
     {
       title: "S&P 500 Companies: Sector, Location, and Diversity Analysis",
@@ -235,6 +244,7 @@ const Projects = () => {
             </Button>
           </div>
         </div>
+        <div className="border-t border-border mx-auto mt-20"></div> {/* Divider */}
       </div>
     </section>
   );
