@@ -231,7 +231,7 @@ const Projects = () => {
           </div>
 
           {/* View More */}
-          <div className="text-center mt-16 fade-in-up delay-3">
+          <div className="text-center mt-16 mb-16fade-in-up delay-3">
             <Button
               variant="outline"
               size="lg"
@@ -244,7 +244,7 @@ const Projects = () => {
             </Button>
           </div>
         </div>
-        <div className="border-t border-border mx-auto mt-20"></div> {/* Divider */}
+        <div className="border-border border-t mt-20"></div> {/* Divider */}
       </div>
     </section>
   );
