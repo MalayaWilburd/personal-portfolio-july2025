@@ -116,11 +116,11 @@ const Hero = () => {
                     sequence={[
                       "Malaya Wilburd",
                       1000,
-                      "Future Data Analyst",
+                      "Data Analyst",
                       1000,
                       "AI/ML Enthusiast",
                       1000,
-                      "Web developer",
+                      "Web Developer",
                       1000,
                       "Problem Solver",
                       1000,
