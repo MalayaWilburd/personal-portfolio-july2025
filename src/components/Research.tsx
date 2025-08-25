@@ -29,7 +29,7 @@ const Research = () => {
   const otherResearch = research.filter(item => !item.featured);
 
   return (
-    <section id="research" className="py-20 bg-surface-alt">
+    <section id="research" className="py-20 bg-surface">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}

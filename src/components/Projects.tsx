@@ -244,7 +244,6 @@ const Projects = () => {
             </Button>
           </div>
         </div>
-        <div className="border-border border-t mt-20"></div> {/* Divider */}
       </div>
     </section>
   );
