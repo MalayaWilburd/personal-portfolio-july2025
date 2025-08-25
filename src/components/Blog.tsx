@@ -106,14 +106,6 @@ const Blog = () => {
             </article>
           ))}
         </div>
-
-        {/* View All Posts */}
-        <div className="text-center">
-          <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            View All Posts
-            <ExternalLink className="h-4 w-4 ml-2" />
-          </Button>
-        </div>
       </div>
     </section>
   );
